@@ -80,11 +80,11 @@ public class SmeltAll implements CommandExecutor {
 	    if (itemStack == null || itemStack.getType() == Material.AIR) {
 		continue;
 	    }
-	    
+
 	    if (!Utils.isValidMaterial(itemStack)) {
 		continue;
 	    }
-	    
+
 	    if (ConfigUtils.isPerItem() && !Utils.hasItemPerm(player, itemStack.getType())) {
 		continue;
 	    }
