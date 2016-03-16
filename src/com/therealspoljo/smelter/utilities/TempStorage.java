@@ -14,8 +14,11 @@ public final class TempStorage {
 
     public static boolean isOnCooldown(UUID uuid, boolean all) {
 	String key = all ? "SmeltAll" : "Smelt";
-	if (!cooldowns.contains(uuid, key))
+
+	if (!cooldowns.contains(uuid, key)) {
 	    return false;
+	}
+
 	if (cooldowns.get(uuid, key) < System.currentTimeMillis()) {
 	    removeCooldown(uuid, all);
 	    return false;
@@ -27,13 +30,17 @@ public final class TempStorage {
 	String key = all ? "SmeltAll" : "Smelt";
 	long time = ConfigUtils.getSmeltPerRankCooldown(
 		Main.getInstance().getPermission().getPrimaryGroup(Main.getInstance().getServer().getPlayer(uuid)), all) * 1000;
-	if (time <= 0)
+
+	if (time <= 0) {
 	    return;
+	}
+
 	cooldowns.put(uuid, key, System.currentTimeMillis() + time);
     }
 
     public static void removeCooldown(UUID uuid, boolean all) {
 	String key = all ? "SmeltAll" : "Smelt";
+
 	cooldowns.remove(uuid, key);
     }
 

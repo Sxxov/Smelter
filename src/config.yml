@@ -1,3 +1,4 @@
+per-item-permissions: false
 ranks:
   Default:
     cost: 20

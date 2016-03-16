@@ -46,7 +46,7 @@ public class SmeltAll implements CommandExecutor {
 		continue;
 	    }
 
-	    if (ConfigUtils.isPerItemPermission() && !Utils.hasItemPermission(player, true, itemStack.getType())) {
+	    if (ConfigUtils.isPerItem() && !Utils.hasItemPerm(player, itemStack.getType())) {
 		continue;
 	    }
 
@@ -80,10 +80,12 @@ public class SmeltAll implements CommandExecutor {
 	    if (itemStack == null || itemStack.getType() == Material.AIR) {
 		continue;
 	    }
+	    
 	    if (!Utils.isValidMaterial(itemStack)) {
 		continue;
 	    }
-	    if (ConfigUtils.isPerItemPermission() && !Utils.hasItemPermission(player, true, itemStack.getType())) {
+	    
+	    if (ConfigUtils.isPerItem() && !Utils.hasItemPerm(player, itemStack.getType())) {
 		continue;
 	    }
 

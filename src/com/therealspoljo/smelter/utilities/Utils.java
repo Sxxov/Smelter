@@ -16,10 +16,6 @@ public final class Utils {
 	return ChatColor.translateAlternateColorCodes('&', string);
     }
 
-    public static boolean hasItemPermission(Player player, boolean allCMD, Material material) {
-	return player.hasPermission("smelter." + (allCMD ? "smeltall" : "smelt") + "." + material.name().toLowerCase());
-    }
-
     public static boolean isValidMaterial(ItemStack stack) {
 	return getSmeltedItemStack(stack) != null;
     }
@@ -58,7 +54,7 @@ public final class Utils {
 	    if (itemStack.getDurability() > 1) {
 		return null;
 	    }
-	    
+
 	    return new ItemStack(Material.COOKED_FISH, itemStack.getAmount(), itemStack.getDurability());
 	}
 
@@ -135,8 +131,10 @@ public final class Utils {
 	}
 
 	case SPONGE: {
-	    if (itemStack.getDurability() < 1)
+	    if (itemStack.getDurability() < 1) {
 		return null;
+	    }
+
 	    return new ItemStack(Material.SPONGE, itemStack.getAmount(), (short) 0);
 	}
 
@@ -151,6 +149,11 @@ public final class Utils {
 	default:
 	    return null;
 	}
+    }
+
+    public static boolean hasItemPerm(Player player, Material material) {
+	player.hasPermission("smelter.item." + material.name().toLowerCase());
+	return false;
     }
 
     /*

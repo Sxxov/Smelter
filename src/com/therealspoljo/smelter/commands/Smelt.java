@@ -39,7 +39,7 @@ public class Smelt implements CommandExecutor {
 	    return true;
 	}
 
-	if (ConfigUtils.isPerItemPermission() && !Utils.hasItemPermission(player, false, mainHand.getType())) {
+	if (ConfigUtils.isPerItem() && !Utils.hasItemPerm(player, mainHand.getType())) {
 	    Lang.NO_ITEM_PERMISSION.send(sender);
 	    return true;
 	}

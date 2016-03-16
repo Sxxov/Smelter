@@ -9,7 +9,7 @@ public final class ConfigUtils {
     private ConfigUtils() {
     }
 
-    public static boolean isPerItemPermission() {
+    public static boolean isPerItem() {
 	return Main.getInstance().getConfig().getBoolean("per-item-permissions", false);
     }
 
