@@ -1,6 +1,6 @@
 main: com.therealspoljo.smelter.Main
 name: Smelter
-version: 2.2
+version: 2.2.1
 author: therealspoljo
 depend: [Vault]
 
