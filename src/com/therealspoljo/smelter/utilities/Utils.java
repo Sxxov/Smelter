@@ -63,7 +63,7 @@ public final class Utils {
 	}
 
 	case MUTTON: {
-	    return new ItemStack(Material.MUTTON, itemStack.getAmount());
+	    return new ItemStack(Material.COOKED_MUTTON, itemStack.getAmount());
 	}
 
 	case RABBIT: {
