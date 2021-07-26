@@ -9,8 +9,7 @@ import com.therealspoljo.smelter.Main;
 
 public final class Utils {
 
-    private Utils() {
-    }
+    private Utils() {}
 
     public static String colorize(String string) {
 		return ChatColor.translateAlternateColorCodes('&', string);
@@ -134,65 +133,7 @@ public final class Utils {
 	}
 
     public static boolean hasItemPerm(Player player, Material material) {
-	player.hasPermission("smelter.item." + material.name().toLowerCase());
-	return false;
+		player.hasPermission("smelter.item." + material.name().toLowerCase());
+		return false;
     }
-
-    // public static boolean isAFuel(ItemStack item) {
-    // switch (item.getType()) {
-    // case LAVA_BUCKET:
-    // case COAL_BLOCK:
-    // case BLAZE_ROD:
-    // case COAL:
-    // case LOG:
-    // case LOG_2:
-    // case WOOD:
-    // case WOOD_PLATE:
-    // case FENCE:
-    // case ACACIA_FENCE:
-    // case BIRCH_FENCE:
-    // case DARK_OAK_FENCE:
-    // case JUNGLE_FENCE:
-    // case SPRUCE_FENCE:
-    // case FENCE_GATE:
-    // case ACACIA_FENCE_GATE:
-    // case BIRCH_FENCE_GATE:
-    // case DARK_OAK_FENCE_GATE:
-    // case JUNGLE_FENCE_GATE:
-    // case SPRUCE_FENCE_GATE:
-    // case WOOD_STAIRS:
-    // case ACACIA_STAIRS:
-    // case BIRCH_WOOD_STAIRS:
-    // case DARK_OAK_STAIRS:
-    // case JUNGLE_WOOD_STAIRS:
-    // case SPRUCE_WOOD_STAIRS:
-    // case TRAP_DOOR:
-    // case WORKBENCH:
-    // case BOOKSHELF:
-    // case CHEST:
-    // case TRAPPED_CHEST:
-    // case DAYLIGHT_DETECTOR:
-    // case DAYLIGHT_DETECTOR_INVERTED:
-    // case JUKEBOX:
-    // case NOTE_BLOCK:
-    // case HUGE_MUSHROOM_1:
-    // case HUGE_MUSHROOM_2:
-    // case BANNER:
-    // case STANDING_BANNER:
-    // case WALL_BANNER:
-    // case WOOD_AXE:
-    // case WOOD_HOE:
-    // case WOOD_PICKAXE:
-    // case WOOD_SPADE:
-    // case WOOD_SWORD:
-    // case DOUBLE_STEP:
-    // case WOOD_DOUBLE_STEP:
-    // case WOOD_STEP:
-    // case SAPLING:
-    // case STICK:
-    // return true;
-    // default:
-    // return false;
-    // }
-    // }
 }

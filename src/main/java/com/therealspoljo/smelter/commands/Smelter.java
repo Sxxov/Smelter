@@ -24,19 +24,19 @@ public class Smelter implements CommandExecutor {
 
 	if (args.length == 1) {
 	    switch (args[0].toLowerCase()) {
-	    case "reload":
-	    case "rl":
-		Main.getInstance().getConfig().reload();
-		Main.getInstance().getLangConfig().reload();
-		Lang.CONFIGS_RELOADED.send(sender);
-		return true;
+			case "reload":
+			case "rl":
+				Main.getInstance().getConfig().reload();
+				Main.getInstance().getLangConfig().reload();
+				Lang.CONFIGS_RELOADED.send(sender);
+			return true;
 	    }
 
 	    sender.sendMessage("§cUsage: §7" + command.getUsage().replaceAll("<command>", commandLabel));
 	    return true;
 	}
 
-	sender.sendMessage("§cUsage: §7" + command.getUsage().replaceAll("<command>", commandLabel));
-	return true;
+		sender.sendMessage("§cUsage: §7" + command.getUsage().replaceAll("<command>", commandLabel));
+		return true;
     }
 }

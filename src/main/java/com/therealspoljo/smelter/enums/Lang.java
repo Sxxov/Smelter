@@ -22,19 +22,19 @@ public enum Lang {
     private String message;
 
     Lang(String path, String defaultMessage) {
-	this.message = Main.getInstance().getLangConfig().getString(path, defaultMessage);
+	    this.message = Main.getInstance().getLangConfig().getString(path, defaultMessage);
     }
 
     public String getMessage() {
-	return message;
+	    return message;
     }
 
     @Override
     public String toString() {
-	return Utils.colorize(TITLE.getMessage()) + Utils.colorize(getMessage());
+	    return Utils.colorize(TITLE.getMessage()) + Utils.colorize(getMessage());
     }
 
     public void send(CommandSender sender) {
-	sender.sendMessage(this.toString());
+	    sender.sendMessage(this.toString());
     }
 }

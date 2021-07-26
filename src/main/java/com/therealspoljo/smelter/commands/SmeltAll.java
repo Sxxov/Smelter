@@ -17,100 +17,100 @@ public class SmeltAll implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
-	if (!Permissions.SMELTALL.isAllowed(sender)) {
-	    Lang.NO_PERMISSION.send(sender);
-	    return true;
-	}
+		if (!Permissions.SMELTALL.isAllowed(sender)) {
+			Lang.NO_PERMISSION.send(sender);
+			return true;
+		}
 
-	if (!(sender instanceof Player)) {
-	    Lang.ONLY_PLAYER_COMMAND.send(sender);
-	    return true;
-	}
+		if (!(sender instanceof Player)) {
+			Lang.ONLY_PLAYER_COMMAND.send(sender);
+			return true;
+		}
 
-	if (args.length > 0) {
-	    sender.sendMessage("§cUsage: §7" + command.getUsage().replaceAll("<command>", commandLabel));
-	    return true;
-	}
+		if (args.length > 0) {
+			sender.sendMessage("§cUsage: §7" + command.getUsage().replaceAll("<command>", commandLabel));
+			return true;
+		}
 
-	Player player = (Player) sender;
-	String primaryGroup = Utils.getPrimaryGroup(player);
-	int amount = 0;
-	double price = primaryGroup.isEmpty() ? 0 : ConfigUtils.getSmeltPerRankCost(primaryGroup);
+		Player player = (Player) sender;
+		String primaryGroup = Utils.getPrimaryGroup(player);
+		int amount = 0;
+		double price = primaryGroup.isEmpty() ? 0 : ConfigUtils.getSmeltPerRankCost(primaryGroup);
 
-	for (ItemStack itemStack : player.getInventory().getContents()) {
-	    if (itemStack == null || itemStack.getType() == Material.AIR) {
-			continue;
-	    }
+		for (ItemStack itemStack : player.getInventory().getContents()) {
+			if (itemStack == null || itemStack.getType() == Material.AIR) {
+				continue;
+			}
 
-	    if (!Utils.isValidMaterial(itemStack)) {
-			continue;
-	    }
+			if (!Utils.isValidMaterial(itemStack)) {
+				continue;
+			}
 
-	    if (ConfigUtils.isPerItem() && !Utils.hasItemPerm(player, itemStack.getType())) {
-			continue;
-	    }
+			if (ConfigUtils.isPerItem() && !Utils.hasItemPerm(player, itemStack.getType())) {
+				continue;
+			}
 
-	    amount += itemStack.getAmount();
-	}
+			amount += itemStack.getAmount();
+		}
 
-	if (amount <= 0) {
-	    Lang.NO_SMELTABLE_ITEMS.send(sender);
-	    return true;
-	}
+		if (amount <= 0) {
+			Lang.NO_SMELTABLE_ITEMS.send(sender);
+			return true;
+		}
 
-	boolean isEconomyEnabled = ConfigUtils.isEconomy();
+		boolean isEconomyEnabled = ConfigUtils.isEconomy();
 
-	if (isEconomyEnabled && !Utils.hasEnough(player, price * amount)) {
-	    String message = Lang.NOT_ENOUGH_MONEY.toString();
-	    message = message.replaceAll("%money_needed", price + "");
+		if (isEconomyEnabled && !Utils.hasEnough(player, price * amount)) {
+			String message = Lang.NOT_ENOUGH_MONEY.toString();
+			message = message.replaceAll("%money_needed", price + "");
 
-	    player.sendMessage(message);
-	    return true;
-	}
+			player.sendMessage(message);
+			return true;
+		}
 
-	if (TempStorage.isOnCooldown(player.getUniqueId(), true)) {
-	    String message = Lang.ON_COOLDOWN.toString();
-	    message = message.replaceAll("%time_left", TempStorage.getFormattedTimeLeft(player.getUniqueId(), true) + "");
+		if (TempStorage.isOnCooldown(player.getUniqueId(), true)) {
+			String message = Lang.ON_COOLDOWN.toString();
+			message = message.replaceAll("%time_left", TempStorage.getFormattedTimeLeft(player.getUniqueId(), true) + "");
 
-	    player.sendMessage(message);
-	    return true;
-	}
+			player.sendMessage(message);
+			return true;
+		}
 
-	for (ItemStack itemStack : player.getInventory().getContents()) {
-	    if (itemStack == null || itemStack.getType() == Material.AIR) {
-			continue;
-	    }
+		for (ItemStack itemStack : player.getInventory().getContents()) {
+			if (itemStack == null || itemStack.getType() == Material.AIR) {
+				continue;
+			}
 
-	    if (!Utils.isValidMaterial(itemStack)) {
-			continue;
-	    }
+			if (!Utils.isValidMaterial(itemStack)) {
+				continue;
+			}
 
-	    if (ConfigUtils.isPerItem() && !Utils.hasItemPerm(player, itemStack.getType())) {
-			continue;
-	    }
+			if (ConfigUtils.isPerItem() && !Utils.hasItemPerm(player, itemStack.getType())) {
+				continue;
+			}
 
-	    ItemStack smelted = Utils.getSmeltedItemStack(itemStack);
+			ItemStack smelted = Utils.getSmeltedItemStack(itemStack);
 
-	    if (smelted == null) {
-			continue;
-	    }
+			if (smelted == null) {
+				continue;
+			}
 
-	    itemStack.setAmount(smelted.getAmount());
-	    itemStack.setItemMeta(smelted.getItemMeta());
-	    itemStack.setType(smelted.getType());
-	    itemStack.setData(itemStack.getData());
-		itemStack.setItemMeta(smelted.getItemMeta());
-	}
+			itemStack.setAmount(smelted.getAmount());
+			itemStack.setItemMeta(smelted.getItemMeta());
+			itemStack.setType(smelted.getType());
+			itemStack.setData(itemStack.getData());
+			itemStack.setItemMeta(smelted.getItemMeta());
+		}
 
-	if (isEconomyEnabled && !Permissions.SMELTALL_FREE.isAllowed(sender)) {
-	    Utils.withdrawPlayer(player, price * amount);
-	}
+		if (isEconomyEnabled && !Permissions.SMELTALL_FREE.isAllowed(sender)) {
+			Utils.withdrawPlayer(player, price * amount);
+		}
 
-	Lang.SMELTED_all.send(player);
+		Lang.SMELTED_all.send(player);
 
-	if (!Permissions.SMELTALL_NO_COOLDOWN.isAllowed(player)) {
-	    TempStorage.updateCooldown(player.getUniqueId(), true);
-	}
-	return true;
+		if (!Permissions.SMELTALL_NO_COOLDOWN.isAllowed(player)) {
+			TempStorage.updateCooldown(player.getUniqueId(), true);
+		}
+		return true;
     }
 }

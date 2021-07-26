@@ -22,80 +22,80 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-	instance = this;
+		instance = this;
 
-	if (!setupEconomy()) {
-	    getLogger().warning("You need to install Vault for this plugin to work.");
-	    getServer().getPluginManager().disablePlugin(this);
-	    return;
-	}
+		if (!setupEconomy()) {
+			getLogger().warning("You need to install Vault for this plugin to work.");
+			getServer().getPluginManager().disablePlugin(this);
+			return;
+		}
 
-	config = Config.createConfig(this, "config");
-	langConfig = Config.createConfig(this, "lang");
+		config = Config.createConfig(this, "config");
+		langConfig = Config.createConfig(this, "lang");
 
-	registerCommands();
-	setupPermissions();
+		registerCommands();
+		setupPermissions();
     }
 
     @Override
     public void onDisable() {
-	instance = null;
+		instance = null;
 
-	economy = null;
-	permission = null;
+		economy = null;
+		permission = null;
 
-	config = null;
-	langConfig = null;
+		config = null;
+		langConfig = null;
     }
 
     private boolean setupEconomy() {
-	if (getServer().getPluginManager().getPlugin("Vault") == null) {
-	    return false;
-	}
+		if (getServer().getPluginManager().getPlugin("Vault") == null) {
+			return false;
+		}
 
-	RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+		RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
 
-	if (rsp == null) {
-	    return false;
-	}
+		if (rsp == null) {
+			return false;
+		}
 
-	economy = rsp.getProvider();
+		economy = rsp.getProvider();
 
-	return economy != null;
+		return economy != null;
     }
 
     private boolean setupPermissions() {
-	RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
+		RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
 
-	permission = rsp.getProvider();
+		permission = rsp.getProvider();
 
-	return permission != null;
+		return permission != null;
     }
 
     private void registerCommands() {
-	getCommand("smelt").setExecutor(new Smelt());
-	getCommand("smeltall").setExecutor(new SmeltAll());
-	getCommand("smelter").setExecutor(new Smelter());
+		getCommand("smelt").setExecutor(new Smelt());
+		getCommand("smeltall").setExecutor(new SmeltAll());
+		getCommand("smelter").setExecutor(new Smelter());
     }
 
     public Config getLangConfig() {
-	return langConfig;
+		return langConfig;
     }
 
     @Override
     public Config getConfig() {
-	return config;
+		return config;
     }
 
     public static Main getInstance() {
-	return instance;
+		return instance;
     }
 
     public Economy getEconomy() {
-	return economy;
+		return economy;
     }
 
     public Permission getPermission() {
-	return permission;
+		return permission;
     }
 }

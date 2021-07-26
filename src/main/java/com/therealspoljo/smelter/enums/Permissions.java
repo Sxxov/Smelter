@@ -15,18 +15,18 @@ public enum Permissions {
     private final String node;
 
     Permissions(String node) {
-	this.node = node;
+	    this.node = node;
     }
 
     public String getNode() {
-	return node;
+	    return node;
     }
 
     public boolean isAllowed(CommandSender sender) {
-	return sender.isOp() || sender.hasPermission(this.getNode());
+	    return sender.isOp() || sender.hasPermission(this.getNode());
     }
 
     public static String getNode(Permissions type) {
-	return type.toString();
+	    return type.toString();
     }
 }
