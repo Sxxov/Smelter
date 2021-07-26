@@ -25,9 +25,8 @@ public class Main extends JavaPlugin {
 		instance = this;
 
 		if (!setupEconomy()) {
-			getLogger().warning("You need to install Vault for this plugin to work.");
-			getServer().getPluginManager().disablePlugin(this);
-			return;
+			getLogger().warning("Vault is not installed.");
+			getLogger().warning("Economy based smelting will not work.");
 		}
 
 		config = Config.createConfig(this, "config");

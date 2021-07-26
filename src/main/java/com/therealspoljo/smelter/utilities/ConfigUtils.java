@@ -23,7 +23,12 @@ public final class ConfigUtils {
     }
 
     public static boolean isEconomy() {
-	    return !Main.getInstance().getConfig().getBoolean("items-required-for-smelting.enabled", false);
+        Main instance = Main.getInstance();
+        
+	    return (
+            instance.getEconomy() != null 
+            && !instance.getConfig().getBoolean("items-required-for-smelting.enabled", false)
+        );
     }
 
     public static double getSmeltPerRankCost(String rank) {
