@@ -1,1 +1,11 @@
+com\therealspoljo\smelter\commands\Smelter.class
+com\therealspoljo\smelter\enums\Permissions.class
+com\therealspoljo\smelter\enums\Lang.class
+com\therealspoljo\smelter\commands\SmeltAll.class
+com\therealspoljo\smelter\Main.class
+com\therealspoljo\smelter\commands\Smelt.class
+com\therealspoljo\smelter\utilities\Utils.class
+com\therealspoljo\smelter\utilities\ConfigUtils.class
+com\therealspoljo\smelter\utilities\Config.class
+com\therealspoljo\smelter\utilities\TempStorage.class
 com\therealspoljo\smelter\utilities\Utils$1.class

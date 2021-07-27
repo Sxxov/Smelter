@@ -2,7 +2,8 @@ main: com.therealspoljo.smelter.Main
 name: Smelter
 version: 3.0.0
 author: therealspoljo
-depend: [Vault]
+softdepend: [Vault]
+api-version: 1.17
 
 commands:
   smelt:
