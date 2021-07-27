@@ -3,6 +3,7 @@ name: Smelter
 version: 3.0.0
 author: therealspoljo
 softdepend: [Vault]
+api-version: 1.17
 
 commands:
   smelt:
