@@ -36,7 +36,13 @@ public final class Utils {
     }
 
     public static ItemStack getSmeltedItemStack(ItemStack itemStack) {
-		return new ItemStack(Utils.getSmeltedMaterial(itemStack.getType()), itemStack.getAmount());
+		Material material = Utils.getSmeltedMaterial(itemStack.getType());
+
+		if (material == null) {
+			return null;
+		}
+
+		return new ItemStack(material, itemStack.getAmount());
     }
 
 	public static Material getSmeltedMaterial(Material material) {
